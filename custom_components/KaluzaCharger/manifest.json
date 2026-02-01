@@ -1,9 +1,0 @@
-{
-  "domain": "kaluza",
-  "name": "Kaluza Integration",
-  "documentation": "https://github.com/guybw/KaluzaCharger",
-  "dependencies": [],
-  "codeowners": ["@guybw"],
-  "requirements": ["requests"],
-  "version": "1.0.0"
-}

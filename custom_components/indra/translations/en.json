@@ -1,0 +1,111 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Indra EV Charger",
+        "description": "Enter your Indra account email address. A magic link will be sent to verify your account.",
+        "data": {
+          "email": "Email"
+        }
+      },
+      "verify": {
+        "title": "Verify Email",
+        "description": "A magic link has been sent to {email}. Please click the link in your email, then press Submit."
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to Indra API",
+      "auth_timeout": "Timed out waiting for email verification. Please try again.",
+      "no_devices": "No devices found on this account",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "Account is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Indra EV Charger Options",
+        "description": "Configure how often the integration polls for updates (30-300 seconds).",
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "charger_mode": {
+        "name": "Charger Mode"
+      },
+      "cable_state": {
+        "name": "Charger State"
+      },
+      "boost": {
+        "name": "Boost Active"
+      },
+      "device_locked": {
+        "name": "Locked"
+      },
+      "power": {
+        "name": "Charging Power"
+      },
+      "current": {
+        "name": "Charging Current"
+      },
+      "voltage": {
+        "name": "Voltage"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "session_energy": {
+        "name": "Session Energy"
+      },
+      "total_energy": {
+        "name": "Total Energy"
+      },
+      "ct_clamp": {
+        "name": "Grid Power (CT Clamp)"
+      },
+      "frequency": {
+        "name": "Grid Frequency"
+      }
+    },
+    "binary_sensor": {
+      "connected": {
+        "name": "Connected"
+      },
+      "charging": {
+        "name": "Charging"
+      },
+      "cable_connected": {
+        "name": "Cable Connected"
+      },
+      "supply_issue": {
+        "name": "Supply Issue"
+      },
+      "charge_interrupted": {
+        "name": "Charge Interrupted"
+      },
+      "device_fault": {
+        "name": "Device Fault"
+      },
+      "low_current": {
+        "name": "Low Current Warning"
+      }
+    },
+    "switch": {
+      "boost": {
+        "name": "Boost Charging"
+      },
+      "lock": {
+        "name": "Lock Charger"
+      },
+      "solar": {
+        "name": "Solar Matching"
+      }
+    }
+  }
+}
