@@ -114,10 +114,6 @@ The integration uses the following Indra API endpoints (reverse-engineered from 
 
 Also reported to work with older Kaluza/ChargedEV branded chargers that have been migrated to Indra's platform.
 
-## Credits
-
-- API reverse-engineered from the Indra iOS/Android mobile app
-- Built for the Home Assistant community
 
 ## License
 
