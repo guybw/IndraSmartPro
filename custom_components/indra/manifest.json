@@ -1,12 +1,12 @@
 {
   "domain": "indra",
   "name": "Indra EV Charger",
-  "codeowners": ["@guy"],
+  "codeowners": ["@guybw"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/guy/KaluzaCharger",
+  "documentation": "https://github.com/guybw/IndraSmartPro",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/guy/KaluzaCharger/issues",
+  "issue_tracker": "https://github.com/guybw/IndraSmartPro/issues",
   "requirements": ["requests>=2.28.0"],
   "version": "1.0.0"
 }
