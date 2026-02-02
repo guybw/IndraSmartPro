@@ -123,15 +123,11 @@ class IndraConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(config_entry):
         """Get the options flow for this handler."""
-        return IndraOptionsFlowHandler(config_entry)
+        return IndraOptionsFlowHandler()
 
 
 class IndraOptionsFlowHandler(config_entries.OptionsFlow):
     """Handle options flow for Indra EV Charger."""
-
-    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
-        """Initialize options flow."""
-        self.config_entry = config_entry
 
     async def async_step_init(self, user_input=None):
         """Manage the options."""
