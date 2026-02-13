@@ -33,7 +33,7 @@ This integration brings your Indra charger into Home Assistant for local monitor
 - **Charging Current** - Current draw (A)
 - **Voltage** - Mains voltage (V)
 - **Temperature** - Charger temperature (°C)
-- **Session Energy** - Energy added this charging session (kWh)
+- **Last Session Energy** - Energy from the last completed charging session (kWh)
 - **Total Energy** - Lifetime energy delivered (kWh)
 - **Grid Power (CT Clamp)** - Total grid import power (kW)
 
@@ -75,6 +75,25 @@ The integration uses Indra's magic link authentication (passwordless). Your JWT 
 After setup, you can configure:
 - **Update interval** - How often to poll for updates (30-300 seconds, default 60)
 
+## API Reference
+
+The integration uses the following Indra API endpoints (reverse-engineered from the mobile app):
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/user/check/{email}/{mobileKey}/{os}` | GET | Request magic link |
+| `/api/user/token/{email}/{mobileKey}/{hash}/{os}` | GET | Get JWT token |
+| `/api/devices` | GET | List devices |
+| `/api/command/properties/{deviceUid}` | GET | Get device properties |
+| `/api/telemetry/devices/{deviceUid}/latest` | GET | Get real-time telemetry |
+| `/api/command/boost/start/{deviceUid}` | POST | Start boost |
+| `/api/command/boost/stop/{deviceUid}` | POST | Stop boost |
+| `/lock/{deviceUid}` | PUT | Lock charger |
+| `/unlock/{deviceUid}` | PUT | Unlock charger |
+| `/api/devices/{deviceUid}/solar/enable` | PUT | Enable solar |
+| `/api/devices/{deviceUid}/solar/disable` | PUT | Disable solar |
+| `/api/reports/transactions/latest` | GET | Get charging sessions |
+
 ## Known Limitations
 
 ### Not Yet Implemented
@@ -95,6 +114,10 @@ After setup, you can configure:
 
 Also reported to work with older Kaluza/ChargedEV branded chargers that have been migrated to Indra's platform.
 
+## Credits
+
+- API reverse-engineered from the Indra iOS/Android mobile app
+- Built for the Home Assistant community
 
 ## License
 

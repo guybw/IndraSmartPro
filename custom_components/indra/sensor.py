@@ -286,10 +286,10 @@ class IndraTemperatureSensor(CoordinatorEntity[IndraDataUpdateCoordinator], Sens
 
 
 class IndraSessionEnergySensor(CoordinatorEntity[IndraDataUpdateCoordinator], SensorEntity):
-    """Indra session energy sensor - energy added this charging session."""
+    """Indra session energy sensor - energy from the last completed charging session."""
 
     _attr_has_entity_name = True
-    _attr_name = "Session Energy"
+    _attr_name = "Last Session Energy"
     _attr_device_class = SensorDeviceClass.ENERGY
     _attr_native_unit_of_measurement = UnitOfEnergy.KILO_WATT_HOUR
     _attr_state_class = SensorStateClass.TOTAL

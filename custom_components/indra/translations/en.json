@@ -61,7 +61,7 @@
         "name": "Temperature"
       },
       "session_energy": {
-        "name": "Session Energy"
+        "name": "Last Session Energy"
       },
       "total_energy": {
         "name": "Total Energy"
