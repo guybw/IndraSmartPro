@@ -36,10 +36,9 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         )
         self.api = api
         self.devices: list[dict[str, Any]] = []
-        # Track session energy baselines (activeEnergyToEv at session start)
+        # Track session energy baselines (activeEnergyToEv at plug-in)
         self._session_baselines: dict[str, float | None] = {}
-        self._prev_cable_states: dict[str, str | None] = {}
-        self._unplug_count: dict[str, int] = {}  # consecutive notCharging polls
+        self._prev_cable_connected: dict[str, bool] = {}
         self._store = Store(hass, STORAGE_VERSION, STORAGE_KEY)
         self._storage_loaded = False
 
@@ -50,8 +49,7 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         stored = await self._store.async_load()
         if stored and isinstance(stored, dict):
             self._session_baselines = stored.get("baselines", {})
-            self._prev_cable_states = stored.get("cable_states", {})
-            self._unplug_count = stored.get("unplug_count", {})
+            self._prev_cable_connected = stored.get("cable_connected", {})
             _LOGGER.debug("Restored session baselines: %s", self._session_baselines)
         self._storage_loaded = True
 
@@ -59,8 +57,7 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         """Persist session baselines to disk."""
         await self._store.async_save({
             "baselines": self._session_baselines,
-            "cable_states": self._prev_cable_states,
-            "unplug_count": self._unplug_count,
+            "cable_connected": self._prev_cable_connected,
         })
 
     def update_interval_from_options(self) -> None:
@@ -121,44 +118,40 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                     if s.get("deviceUId") == device_uid
                 ]
 
-                # Track session energy baseline
+                # Session energy baseline tracking.
+                # Cable is "connected" when cableState is one of:
+                #   charging, connected, notCharging
+                # Cable is "unplugged" when cableState is anything else
+                # (empty string, null, etc.)
+                # This matches the Cable Connected binary sensor logic.
+                # "notCharging" does NOT mean unplugged - it means the
+                # cable is connected but not actively charging (e.g.
+                # supplier paused the charge overnight).
                 cable_state = props.get("cableState", {}).get("settingValue", "")
-                prev_state = self._prev_cable_states.get(device_uid)
+                cable_connected = cable_state in ("charging", "connected", "notCharging")
+                was_connected = self._prev_cable_connected.get(device_uid, False)
                 telem_data = device_telemetry.get("data", {})
                 current_energy_wh = telem_data.get("activeEnergyToEv")
 
-                # Track session energy baseline.
-                # Only set baseline on a confirmed new plug-in event.
-                # Supplier stop/start cycles can briefly set cableState
-                # to "notCharging", so we require 2 consecutive polls
-                # in "notCharging" before we consider the cable truly
-                # unplugged and clear the baseline.
-                is_plugged_in = cable_state in ("charging", "connected")
-
-                if cable_state == "notCharging":
-                    count = self._unplug_count.get(device_uid, 0) + 1
-                    self._unplug_count[device_uid] = count
-                    if count >= 2 and device_uid in self._session_baselines:
-                        # Confirmed unplug - clear baseline
+                # Cable just unplugged - clear baseline
+                if was_connected and not cable_connected:
+                    if device_uid in self._session_baselines:
                         del self._session_baselines[device_uid]
-                        baselines_changed = True
-                        _LOGGER.debug("Confirmed unplug, cleared baseline")
-                else:
-                    self._unplug_count[device_uid] = 0
+                        _LOGGER.debug("Cable unplugged, cleared baseline")
+                    baselines_changed = True
 
-                if is_plugged_in and device_uid not in self._session_baselines:
-                    # No baseline exists - new plug-in, set it
+                # Cable just plugged in - set new baseline
+                if cable_connected and not was_connected:
                     if current_energy_wh is not None:
                         self._session_baselines[device_uid] = current_energy_wh
-                        baselines_changed = True
                         _LOGGER.debug(
-                            "Car plugged in, baseline: %s Wh",
+                            "Cable plugged in, baseline: %s Wh",
                             current_energy_wh,
                         )
-
-                if cable_state != prev_state:
-                    self._prev_cable_states[device_uid] = cable_state
                     baselines_changed = True
+
+                if cable_connected != was_connected:
+                    self._prev_cable_connected[device_uid] = cable_connected
 
                 data["devices"][device_uid] = {
                     "device_info": device,
