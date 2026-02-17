@@ -142,6 +142,13 @@ class IndraApi:
         response = self._session.put(f"{API_URL}/unlock/{device_uid}")
         return response.status_code == 200
 
+    def get_schedules(self) -> list[dict[str, Any]]:
+        """Get charging schedules."""
+        response = self._session.get(f"{API_URL}/api/schedules")
+        if response.status_code == 200:
+            return response.json()
+        return []
+
     def get_device_telemetry(self, device_uid: str) -> dict[str, Any]:
         """Get device telemetry data (power, current, voltage, etc.)."""
         response = self._session.get(

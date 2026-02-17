@@ -85,10 +85,12 @@ async def async_setup_entry(
             IndraCurrentSensor(coordinator, device_uid, device_info),
             IndraVoltageSensor(coordinator, device_uid, device_info),
             IndraTemperatureSensor(coordinator, device_uid, device_info),
+            IndraCurrentSessionEnergySensor(coordinator, device_uid, device_info),
             IndraSessionEnergySensor(coordinator, device_uid, device_info),
             IndraTotalEnergySensor(coordinator, device_uid, device_info),
             IndraCtClampSensor(coordinator, device_uid, device_info),
             IndraFrequencySensor(coordinator, device_uid, device_info),
+            IndraScheduleSensor(coordinator, device_uid, device_info),
         ])
 
     async_add_entities(entities)
@@ -285,6 +287,42 @@ class IndraTemperatureSensor(CoordinatorEntity[IndraDataUpdateCoordinator], Sens
         return None
 
 
+class IndraCurrentSessionEnergySensor(CoordinatorEntity[IndraDataUpdateCoordinator], SensorEntity):
+    """Indra current session energy - calculated from activeEnergyToEv delta since charging started."""
+
+    _attr_has_entity_name = True
+    _attr_name = "Current Session Energy"
+    _attr_device_class = SensorDeviceClass.ENERGY
+    _attr_native_unit_of_measurement = UnitOfEnergy.KILO_WATT_HOUR
+    _attr_state_class = SensorStateClass.TOTAL
+    _attr_icon = "mdi:battery-charging"
+
+    def __init__(
+        self,
+        coordinator: IndraDataUpdateCoordinator,
+        device_uid: str,
+        device_info: dict[str, Any],
+    ) -> None:
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self._device_uid = device_uid
+        self._attr_unique_id = f"{device_uid}_current_session_energy"
+        self._attr_device_info = _get_device_info(device_uid, device_info)
+
+    @property
+    def native_value(self) -> float | None:
+        """Return the current session energy in kWh."""
+        device_data = self.coordinator.data.get("devices", {}).get(self._device_uid, {})
+        baseline = device_data.get("session_energy_baseline")
+        telemetry = device_data.get("device_telemetry", {})
+        current_energy_wh = telemetry.get("data", {}).get("activeEnergyToEv")
+
+        if baseline is not None and current_energy_wh is not None:
+            delta = (current_energy_wh - baseline) / 1000
+            return round(max(0, delta), 2)
+        return 0.0
+
+
 class IndraSessionEnergySensor(CoordinatorEntity[IndraDataUpdateCoordinator], SensorEntity):
     """Indra session energy sensor - energy from the last completed charging session."""
 
@@ -441,3 +479,64 @@ class IndraFrequencySensor(CoordinatorEntity[IndraDataUpdateCoordinator], Sensor
         if freq is not None:
             return round(freq, 2)
         return None
+
+
+class IndraScheduleSensor(CoordinatorEntity[IndraDataUpdateCoordinator], SensorEntity):
+    """Indra charging schedule sensor."""
+
+    _attr_has_entity_name = True
+    _attr_name = "Charging Schedule"
+    _attr_icon = "mdi:calendar-clock"
+
+    def __init__(
+        self,
+        coordinator: IndraDataUpdateCoordinator,
+        device_uid: str,
+        device_info: dict[str, Any],
+    ) -> None:
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self._device_uid = device_uid
+        self._attr_unique_id = f"{device_uid}_schedule"
+        self._attr_device_info = _get_device_info(device_uid, device_info)
+
+    @property
+    def _schedule(self) -> dict[str, Any] | None:
+        """Get the first (active) schedule."""
+        device_data = self.coordinator.data.get("devices", {}).get(self._device_uid, {})
+        schedules = device_data.get("schedules", [])
+        return schedules[0] if schedules else None
+
+    @property
+    def native_value(self) -> str | None:
+        """Return the schedule name."""
+        schedule = self._schedule
+        if schedule:
+            return schedule.get("name")
+        return "No schedule"
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Return schedule details as attributes."""
+        schedule = self._schedule
+        if not schedule:
+            return {}
+
+        timing = schedule.get("timing", {})
+        target = schedule.get("target", {})
+
+        start = timing.get("start", "")
+        end = timing.get("end", "")
+        # Format times from "23:30:00" to "23:30"
+        if start and len(start) >= 5:
+            start = start[:5]
+        if end and len(end) >= 5:
+            end = end[:5]
+
+        return {
+            "start_time": start,
+            "end_time": end,
+            "days": schedule.get("recurrence", ""),
+            "target_value": target.get("value"),
+            "target_unit": target.get("unit"),
+        }

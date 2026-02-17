@@ -33,9 +33,11 @@ This integration brings your Indra charger into Home Assistant for local monitor
 - **Charging Current** - Current draw (A)
 - **Voltage** - Mains voltage (V)
 - **Temperature** - Charger temperature (°C)
+- **Current Session Energy** - Energy added since the car was plugged in (kWh)
 - **Last Session Energy** - Energy from the last completed charging session (kWh)
 - **Total Energy** - Lifetime energy delivered (kWh)
 - **Grid Power (CT Clamp)** - Total grid import power (kW)
+- **Charging Schedule** - Active schedule name with start/end times, days, and target as attributes
 
 ### Binary Sensors
 - **Charging** - Whether the charger is actively charging

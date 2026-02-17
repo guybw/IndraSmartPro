@@ -60,6 +60,9 @@
       "temperature": {
         "name": "Temperature"
       },
+      "current_session_energy": {
+        "name": "Current Session Energy"
+      },
       "session_energy": {
         "name": "Last Session Energy"
       },
@@ -71,6 +74,9 @@
       },
       "frequency": {
         "name": "Grid Frequency"
+      },
+      "schedule": {
+        "name": "Charging Schedule"
       }
     },
     "binary_sensor": {
