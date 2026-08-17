@@ -1,6 +1,8 @@
 # Indra Smart PRO - Home Assistant Integration
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=guybw&repository=IndraSmartPro&category=integration)
+[![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=indra)
 
 A custom Home Assistant integration for the **Indra Smart PRO** EV charger (7.4kW home charger).
 
@@ -51,6 +53,7 @@ This integration brings your Indra charger into Home Assistant for local monitor
 ## Installation
 
 ### HACS (Recommended)
+Click the badge above to add this repository to HACS directly, or do it manually:
 1. Open HACS in Home Assistant
 2. Click the three dots menu → **Custom repositories**
 3. Add `https://github.com/guybw/IndraSmartPro` as an **Integration**
@@ -65,6 +68,7 @@ This integration brings your Indra charger into Home Assistant for local monitor
 
 ## Configuration
 
+Click the "Add Integration" badge above to jump straight to setup, or do it manually:
 1. Go to **Settings** → **Devices & Services** → **Add Integration**
 2. Search for "**Indra**"
 3. Enter your Indra account email address
@@ -80,7 +84,6 @@ After setup, you can configure:
 ## Known Limitations
 
 ### Not Yet Implemented
-- **Charging Schedules** - The API supports schedules but they're not yet exposed
 - **Charge Profiles** - Switch between different charging profiles
 - **Tariff Integration** - The API has tariff-related endpoints
 - **Historical Data** - Transaction history and historical telemetry
