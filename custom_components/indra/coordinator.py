@@ -65,7 +65,7 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         scan_interval = self._entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
         self.update_interval = timedelta(seconds=scan_interval)
 
-    async def _async_update_data(self) -> dict[str, Any]:
+    async def _async_update_data(self, retry: int = 0) -> dict[str, Any]:
         """Fetch data from API."""
         # Restore baselines from disk on first run
         await self._load_baselines()
@@ -171,13 +171,17 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             return data
 
         except IndraAuthError as err:
-            # Try to refresh token
+            # Try to refresh token, but only once to avoid an unbounded
+            # retry loop if the API keeps reporting the refreshed token
+            # as invalid (e.g. a persistent server-side auth problem).
+            if retry:
+                raise UpdateFailed(f"Authentication failed after refresh: {err}") from err
             _LOGGER.warning("Auth error, attempting token refresh")
             refreshed = await self.hass.async_add_executor_job(self.api.refresh_token)
             if not refreshed:
                 raise UpdateFailed(f"Authentication failed: {err}") from err
-            # Retry after refresh
-            return await self._async_update_data()
+            # Retry once after refresh
+            return await self._async_update_data(retry=retry + 1)
 
         except IndraApiError as err:
             raise UpdateFailed(f"Error fetching data: {err}") from err
