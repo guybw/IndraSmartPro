@@ -4,10 +4,6 @@
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=guybw&repository=IndraSmartPro&category=integration)
 [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=indra)
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=guybw&repository=IndraSmartPro&category=integration)
-
-[![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=indra)
-
 A custom Home Assistant integration for the **Indra Smart PRO** EV charger (7.4kW home charger).
 
 Also works with chargers previously branded as **Kaluza**, **ChargedEV**, or **Indra Smart**.
@@ -34,7 +30,7 @@ This integration brings your Indra charger into Home Assistant for local monitor
 
 ### Sensors
 - **Charger Mode** - Current mode (IDLE, BOOST, CHARGING, SOLAR)
-- **Charger State** - Cable state (charging, notCharging, connected)
+- **Charger State** - Raw cable state reported by the API (e.g. `charging`, `notCharging`, `connected`, `disabled`, `unplugged`)
 - **Charging Power** - Real-time charging power (kW)
 - **Charging Current** - Current draw (A)
 - **Voltage** - Mains voltage (V)
