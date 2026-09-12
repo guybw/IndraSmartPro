@@ -15,7 +15,7 @@ from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
+from .const import CABLE_STATES_UNPLUGGED, DOMAIN
 from .coordinator import IndraDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
@@ -149,9 +149,10 @@ class IndraBinarySensor(CoordinatorEntity[IndraDataUpdateCoordinator], BinarySen
             return state == "charging"
 
         elif key == "cable_connected":
-            # Check cable state
-            cable_state = props.get("cableState", {}).get("settingValue", "")
-            return cable_state in ["charging", "connected", "notCharging"]
+            # Any state other than a known-unplugged one means the cable is
+            # in (see CABLE_STATES_UNPLUGGED for why this is a denylist).
+            cable_state = props.get("cableState", {}).get("settingValue") or ""
+            return cable_state not in CABLE_STATES_UNPLUGGED
 
         elif key == "supply_issue":
             return props.get("chargeInterruptedSupplyIssue", {}).get("settingValue") == "True"

@@ -20,6 +20,8 @@ CHARGER_MODE_BOOST = "BOOST"
 CHARGER_MODE_CHARGING = "CHARGING"
 CHARGER_MODE_SOLAR = "SOLAR"
 
-CABLE_STATE_NOT_CHARGING = "notCharging"
-CABLE_STATE_CHARGING = "charging"
-CABLE_STATE_CONNECTED = "connected"
+# cableState values that mean no cable is plugged in. Any other value
+# (including "disabled" - plugged in but charging not currently permitted,
+# and any future values Indra adds) is treated as connected, so this is a
+# denylist rather than an allowlist.
+CABLE_STATES_UNPLUGGED = frozenset({"", "unplugged", "disconnected", "unknown"})

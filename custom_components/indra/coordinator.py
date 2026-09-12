@@ -10,7 +10,12 @@ from homeassistant.helpers.storage import Store
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import IndraApi, IndraApiError, IndraAuthError
-from .const import DOMAIN, CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL
+from .const import (
+    CABLE_STATES_UNPLUGGED,
+    CONF_SCAN_INTERVAL,
+    DEFAULT_SCAN_INTERVAL,
+    DOMAIN,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -119,16 +124,14 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 ]
 
                 # Session energy baseline tracking.
-                # Cable is "connected" when cableState is one of:
-                #   charging, connected, notCharging
-                # Cable is "unplugged" when cableState is anything else
-                # (empty string, null, etc.)
-                # This matches the Cable Connected binary sensor logic.
-                # "notCharging" does NOT mean unplugged - it means the
-                # cable is connected but not actively charging (e.g.
-                # supplier paused the charge overnight).
-                cable_state = props.get("cableState", {}).get("settingValue", "")
-                cable_connected = cable_state in ("charging", "connected", "notCharging")
+                # This matches the Cable Connected binary sensor logic: any
+                # cableState other than a known-unplugged one (see
+                # CABLE_STATES_UNPLUGGED) counts as connected. Values like
+                # "notCharging" and "disabled" mean the cable is connected
+                # but not actively charging (e.g. supplier paused the charge
+                # overnight, or charging isn't currently permitted).
+                cable_state = props.get("cableState", {}).get("settingValue") or ""
+                cable_connected = cable_state not in CABLE_STATES_UNPLUGGED
                 was_connected = self._prev_cable_connected.get(device_uid, False)
                 telem_data = device_telemetry.get("data", {})
                 current_energy_wh = telem_data.get("activeEnergyToEv")
