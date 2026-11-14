@@ -104,7 +104,6 @@ Also reported to work with older Kaluza/ChargedEV branded chargers that have bee
 
 ## Credits
 
-- API reverse-engineered from the Indra iOS/Android mobile app
 - Built for the Home Assistant community
 
 ## License
