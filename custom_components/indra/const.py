@@ -9,6 +9,9 @@ CONF_SCAN_INTERVAL = "scan_interval"
 
 API_URL = "https://api.indra.co.uk"
 
+# Seconds to wait for the API before giving up on a request
+REQUEST_TIMEOUT = 30
+
 # Update interval in seconds
 DEFAULT_SCAN_INTERVAL = 60
 MIN_SCAN_INTERVAL = 30

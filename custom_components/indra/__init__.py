@@ -5,8 +5,9 @@ import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_EMAIL, Platform
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryNotReady
 
-from .api import IndraApi
+from .api import IndraApi, IndraApiError
 from .const import DOMAIN, CONF_MOBILE_KEY, CONF_JWT_TOKEN
 from .coordinator import IndraDataUpdateCoordinator
 
@@ -26,11 +27,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         jwt_token=entry.data[CONF_JWT_TOKEN],
     )
 
-    # Validate token, refresh if needed
-    valid = await hass.async_add_executor_job(api.validate_token)
+    # Validate token, refresh if needed. If the API can't be reached,
+    # let Home Assistant retry the setup later.
+    try:
+        valid = await hass.async_add_executor_job(api.validate_token)
+        refreshed = False
+        if not valid:
+            _LOGGER.info("Token invalid, attempting refresh")
+            refreshed = await hass.async_add_executor_job(api.refresh_token)
+    except IndraApiError as err:
+        raise ConfigEntryNotReady(f"Indra API not reachable: {err}") from err
+
     if not valid:
-        _LOGGER.info("Token invalid, attempting refresh")
-        refreshed = await hass.async_add_executor_job(api.refresh_token)
         if refreshed:
             # Update stored token
             hass.config_entries.async_update_entry(

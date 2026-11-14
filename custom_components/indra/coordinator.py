@@ -180,7 +180,12 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             if retry:
                 raise UpdateFailed(f"Authentication failed after refresh: {err}") from err
             _LOGGER.warning("Auth error, attempting token refresh")
-            refreshed = await self.hass.async_add_executor_job(self.api.refresh_token)
+            try:
+                refreshed = await self.hass.async_add_executor_job(
+                    self.api.refresh_token
+                )
+            except IndraApiError as refresh_err:
+                raise UpdateFailed(f"Token refresh failed: {refresh_err}") from refresh_err
             if not refreshed:
                 raise UpdateFailed(f"Authentication failed: {err}") from err
             # Retry once after refresh
