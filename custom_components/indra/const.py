@@ -1,5 +1,7 @@
 """Constants for the Indra EV Charger integration."""
 
+from datetime import timedelta
+
 DOMAIN = "indra"
 
 CONF_EMAIL = "email"
@@ -11,6 +13,11 @@ API_URL = "https://api.indra.co.uk"
 
 # Seconds to wait for the API before giving up on a request
 REQUEST_TIMEOUT = 30
+
+# Refresh the login token this long before it expires (Indra tokens last
+# 30 days), and wait this long before trying again if a refresh fails.
+TOKEN_REFRESH_BEFORE = timedelta(days=7)
+TOKEN_REFRESH_RETRY = timedelta(hours=6)
 
 # Update interval in seconds
 DEFAULT_SCAN_INTERVAL = 60

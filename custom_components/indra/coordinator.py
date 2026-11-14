@@ -8,9 +8,13 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.storage import Store
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from homeassistant.util import dt as dt_util
 
 from .api import IndraApi, IndraApiError, IndraAuthError
 from .const import (
+    CONF_JWT_TOKEN,
+    TOKEN_REFRESH_BEFORE,
+    TOKEN_REFRESH_RETRY,
     CABLE_STATES_UNPLUGGED,
     CONF_SCAN_INTERVAL,
     DEFAULT_SCAN_INTERVAL,
@@ -46,6 +50,7 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self._prev_cable_connected: dict[str, bool] = {}
         self._store = Store(hass, STORAGE_VERSION, STORAGE_KEY)
         self._storage_loaded = False
+        self._last_token_refresh_attempt = None
 
     async def _load_baselines(self) -> None:
         """Load persisted session baselines from disk."""
@@ -65,6 +70,52 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             "cable_connected": self._prev_cable_connected,
         })
 
+    def _save_token(self) -> None:
+        """Store the API's current token in the config entry.
+
+        The token is refreshed in memory; without this, setup would start
+        from the old (eventually expired) token after every restart.
+        """
+        if self.api.jwt_token and self._entry.data.get(CONF_JWT_TOKEN) != self.api.jwt_token:
+            self.hass.config_entries.async_update_entry(
+                self._entry,
+                data={**self._entry.data, CONF_JWT_TOKEN: self.api.jwt_token},
+            )
+
+    async def _refresh_token_if_due(self) -> None:
+        """Refresh the token before it expires, and keep the new one."""
+        expiry = self.api.token_expiry()
+        now = dt_util.utcnow()
+        if expiry is None or expiry - now > TOKEN_REFRESH_BEFORE:
+            return
+        last = self._last_token_refresh_attempt
+        if last is not None and now - last < TOKEN_REFRESH_RETRY:
+            return
+        self._last_token_refresh_attempt = now
+        try:
+            refreshed = await self.hass.async_add_executor_job(self.api.refresh_token)
+        except IndraApiError as err:
+            _LOGGER.warning("Token refresh failed, will retry: %s", err)
+            return
+        if not refreshed:
+            _LOGGER.warning(
+                "Token refresh was refused; the current token expires %s", expiry
+            )
+            return
+        self._save_token()
+        new_expiry = self.api.token_expiry()
+        if new_expiry is None or new_expiry <= expiry:
+            _LOGGER.warning(
+                "Token refreshed, but the new one doesn't expire later "
+                "(was %s, now %s)",
+                expiry,
+                new_expiry,
+            )
+        else:
+            _LOGGER.info(
+                "Token refreshed; it expired %s, now expires %s", expiry, new_expiry
+            )
+
     def update_interval_from_options(self) -> None:
         """Update the scan interval from config entry options."""
         scan_interval = self._entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
@@ -74,6 +125,9 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         """Fetch data from API."""
         # Restore baselines from disk on first run
         await self._load_baselines()
+
+        if not retry:
+            await self._refresh_token_if_due()
 
         try:
             # Get devices
@@ -188,6 +242,7 @@ class IndraDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 raise UpdateFailed(f"Token refresh failed: {refresh_err}") from refresh_err
             if not refreshed:
                 raise UpdateFailed(f"Authentication failed: {err}") from err
+            self._save_token()
             # Retry once after refresh
             return await self._async_update_data(retry=retry + 1)
 

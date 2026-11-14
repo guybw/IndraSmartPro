@@ -1,7 +1,10 @@
 """Indra EV Charger API client for Home Assistant."""
 
+import base64
+import json
 import logging
 import uuid
+from datetime import datetime, timezone
 import requests
 from typing import Any
 
@@ -78,6 +81,22 @@ class IndraApi:
                 return token
         return None
 
+    def token_expiry(self) -> datetime | None:
+        """Return when the current token expires, from its "exp" claim.
+
+        Only reads the claim; the signature isn't checked. Returns None if
+        there's no token or it can't be read.
+        """
+        if not self.jwt_token:
+            return None
+        try:
+            payload = self.jwt_token.split(".")[1]
+            payload += "=" * (-len(payload) % 4)
+            claims = json.loads(base64.urlsafe_b64decode(payload))
+            return datetime.fromtimestamp(int(claims["exp"]), tz=timezone.utc)
+        except (IndexError, KeyError, TypeError, ValueError):
+            return None
+
     def validate_token(self) -> bool:
         """Check if the current token is valid."""
         if not self.jwt_token:
@@ -95,6 +114,11 @@ class IndraApi:
                 self.jwt_token = token
                 self._session.headers["Authorization"] = f"Bearer {token}"
                 return True
+        _LOGGER.warning(
+            "Token refresh returned HTTP %s: %.200s",
+            response.status_code,
+            response.text,
+        )
         return False
 
     def get_devices(self) -> list[dict[str, Any]]:
