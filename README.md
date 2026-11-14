@@ -1,9 +1,5 @@
 # Indra Smart PRO - Home Assistant Integration
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=guybw&repository=IndraSmartPro&category=integration)
-
 [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=indra)
 
 A custom Home Assistant integration for the **Indra Smart PRO** EV charger (7.4kW home charger).
@@ -54,13 +50,14 @@ This integration brings your Indra charger into Home Assistant for local monitor
 
 ## Installation
 
-### HACS (Recommended)
-Click the badge above to add this repository to HACS directly, or do it manually:
-1. Open HACS in Home Assistant
-2. Click the three dots menu → **Custom repositories**
-3. Add `https://github.com/guybw/IndraSmartPro` as an **Integration**
-4. Search for "Indra EV Charger" and click **Download**
-5. **Restart Home Assistant** (required!)
+### Marketplace (Recommended)
+Home Assistant 2026.11 and later include the Marketplace, which replaces HACS:
+1. Go to **Settings** → **Marketplace**
+2. Add `https://github.com/guybw/IndraSmartPro` as a **custom repository** (type: **Integration**)
+3. Search for "Indra EV Charger" and install it
+4. **Restart Home Assistant** (required!)
+
+On Home Assistant 2026.10 or older you can still use HACS: add the same URL under **Custom repositories**, then download and restart.
 
 ### Manual Installation
 1. Copy the `custom_components/indra` folder to your Home Assistant `config/custom_components/` directory
