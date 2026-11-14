@@ -1,6 +1,7 @@
 {
   "domain": "indra",
   "name": "Indra EV Charger",
+  "categories": ["energy.ev_charging"],
   "codeowners": ["@guybw"],
   "config_flow": true,
   "dependencies": [],
