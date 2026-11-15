@@ -89,7 +89,6 @@ After setup, you can configure:
 
 ### Known Issues
 - Magic link authentication requires manual email click (this is how Indra's auth works)
-- Token refresh may require re-authentication if the charger is offline for extended periods
 
 ## Compatibility
 
