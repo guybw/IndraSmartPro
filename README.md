@@ -98,6 +98,15 @@ After setup, you can configure:
 
 Also reported to work with older Kaluza/ChargedEV branded chargers that have been migrated to Indra's platform.
 
+## Running the tests
+
+```bash
+python -m pip install -r requirements_test.txt
+python -m pytest
+```
+
+The tests use [pytest-homeassistant-custom-component](https://github.com/MatthewFlamm/pytest-homeassistant-custom-component) and need Linux or macOS. The Indra API is mocked, so they don't need a charger or an account.
+
 ## Credits
 
 - Built for the Home Assistant community
