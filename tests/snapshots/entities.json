@@ -1,0 +1,1096 @@
+{
+ "charging": {
+  "binary_sensor:11111111-2222-4333-8444-555555555555_cable_connected": {
+   "attributes": {
+    "device_class": "plug",
+    "friendly_name": "Indra Smart PRO Cable Connected",
+    "icon": "mdi:ev-plug-type2"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "binary_sensor.indra_smart_pro_cable_connected",
+   "state": "on"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_charge_interrupted": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Charge Interrupted",
+    "icon": "mdi:alert"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_charge_interrupted",
+   "state": "on"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_charging": {
+   "attributes": {
+    "device_class": "battery_charging",
+    "friendly_name": "Indra Smart PRO Charging",
+    "icon": "mdi:battery-charging"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "binary_sensor.indra_smart_pro_charging",
+   "state": "on"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_connected": {
+   "attributes": {
+    "device_class": "connectivity",
+    "friendly_name": "Indra Smart PRO Connected",
+    "icon": "mdi:wifi"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_connected",
+   "state": "off"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_device_fault": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Device Fault",
+    "icon": "mdi:alert-octagon"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_device_fault",
+   "state": "on"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_low_current": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Low Current Warning",
+    "icon": "mdi:current-ac"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_low_current_warning",
+   "state": "on"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_supply_issue": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Supply Issue",
+    "icon": "mdi:alert-circle"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_supply_issue",
+   "state": "off"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_boost": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Boost Active",
+    "icon": "mdi:lightning-bolt"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "sensor.indra_smart_pro_boost_active",
+   "state": "True"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_cable_state": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Charger State",
+    "icon": "mdi:ev-plug-type2"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charger_state",
+   "state": "charging"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_charger_mode": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Charger Mode",
+    "icon": "mdi:ev-station"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charger_mode",
+   "state": "BOOST"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_ct_clamp": {
+   "attributes": {
+    "device_class": "power",
+    "friendly_name": "Indra Smart PRO Grid Power (CT Clamp)",
+    "icon": "mdi:transmission-tower",
+    "state_class": "measurement",
+    "unit_of_measurement": "kW"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_grid_power_ct_clamp",
+   "state": "7.46"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_current": {
+   "attributes": {
+    "device_class": "current",
+    "friendly_name": "Indra Smart PRO Charging Current",
+    "icon": "mdi:current-ac",
+    "state_class": "measurement",
+    "unit_of_measurement": "A"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charging_current",
+   "state": "31.3"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_current_session_energy": {
+   "attributes": {
+    "device_class": "energy",
+    "friendly_name": "Indra Smart PRO Current Session Energy",
+    "icon": "mdi:battery-charging",
+    "state_class": "total",
+    "unit_of_measurement": "kWh"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_current_session_energy",
+   "state": "0"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_device_locked": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Locked",
+    "icon": "mdi:lock"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "sensor.indra_smart_pro_locked",
+   "state": "True"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_frequency": {
+   "attributes": {
+    "device_class": "frequency",
+    "friendly_name": "Indra Smart PRO Grid Frequency",
+    "icon": "mdi:sine-wave",
+    "state_class": "measurement",
+    "unit_of_measurement": "Hz"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "sensor.indra_smart_pro_grid_frequency",
+   "state": "49.99"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_power": {
+   "attributes": {
+    "device_class": "power",
+    "friendly_name": "Indra Smart PRO Charging Power",
+    "icon": "mdi:flash",
+    "state_class": "measurement",
+    "unit_of_measurement": "kW"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charging_power",
+   "state": "7.12"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_schedule": {
+   "attributes": {
+    "days": "MON,TUE,WED,THU,FRI",
+    "end_time": "05:30",
+    "friendly_name": "Indra Smart PRO Charging Schedule",
+    "icon": "mdi:calendar-clock",
+    "start_time": "23:30",
+    "target_unit": "PERCENT",
+    "target_value": 80
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charging_schedule",
+   "state": "Weeknights"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_session_energy": {
+   "attributes": {
+    "device_class": "energy",
+    "friendly_name": "Indra Smart PRO Last Session Energy",
+    "icon": "mdi:battery-charging",
+    "state_class": "total",
+    "unit_of_measurement": "kWh"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_last_session_energy",
+   "state": "0.0"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_temperature": {
+   "attributes": {
+    "device_class": "temperature",
+    "friendly_name": "Indra Smart PRO Temperature",
+    "icon": "mdi:thermometer",
+    "state_class": "measurement",
+    "unit_of_measurement": "\u00b0C"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_temperature",
+   "state": "21.4"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_total_energy": {
+   "attributes": {
+    "device_class": "energy",
+    "friendly_name": "Indra Smart PRO Total Energy",
+    "icon": "mdi:counter",
+    "state_class": "total_increasing",
+    "unit_of_measurement": "kWh"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_total_energy",
+   "state": "18090.12"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_voltage": {
+   "attributes": {
+    "device_class": "voltage",
+    "friendly_name": "Indra Smart PRO Voltage",
+    "icon": "mdi:sine-wave",
+    "state_class": "measurement",
+    "unit_of_measurement": "V"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_voltage",
+   "state": "238.4"
+  },
+  "switch:11111111-2222-4333-8444-555555555555_boost": {
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Indra Smart PRO Boost Charging",
+    "icon": "mdi:lightning-bolt"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "switch.indra_smart_pro_boost_charging",
+   "state": "on"
+  },
+  "switch:11111111-2222-4333-8444-555555555555_lock": {
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Indra Smart PRO Lock Charger",
+    "icon": "mdi:lock"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "switch.indra_smart_pro_lock_charger",
+   "state": "on"
+  },
+  "switch:11111111-2222-4333-8444-555555555555_solar": {
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Indra Smart PRO Solar Matching",
+    "icon": "mdi:solar-power"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "switch.indra_smart_pro_solar_matching",
+   "state": "on"
+  }
+ },
+ "idle": {
+  "binary_sensor:11111111-2222-4333-8444-555555555555_cable_connected": {
+   "attributes": {
+    "device_class": "plug",
+    "friendly_name": "Indra Smart PRO Cable Connected",
+    "icon": "mdi:ev-plug-type2"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "binary_sensor.indra_smart_pro_cable_connected",
+   "state": "off"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_charge_interrupted": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Charge Interrupted",
+    "icon": "mdi:alert"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_charge_interrupted",
+   "state": "off"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_charging": {
+   "attributes": {
+    "device_class": "battery_charging",
+    "friendly_name": "Indra Smart PRO Charging",
+    "icon": "mdi:battery-charging"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "binary_sensor.indra_smart_pro_charging",
+   "state": "off"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_connected": {
+   "attributes": {
+    "device_class": "connectivity",
+    "friendly_name": "Indra Smart PRO Connected",
+    "icon": "mdi:wifi"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_connected",
+   "state": "on"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_device_fault": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Device Fault",
+    "icon": "mdi:alert-octagon"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_device_fault",
+   "state": "off"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_low_current": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Low Current Warning",
+    "icon": "mdi:current-ac"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_low_current_warning",
+   "state": "off"
+  },
+  "binary_sensor:11111111-2222-4333-8444-555555555555_supply_issue": {
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Indra Smart PRO Supply Issue",
+    "icon": "mdi:alert-circle"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "binary_sensor.indra_smart_pro_supply_issue",
+   "state": "off"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_boost": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Boost Active",
+    "icon": "mdi:lightning-bolt"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "sensor.indra_smart_pro_boost_active",
+   "state": "False"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_cable_state": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Charger State",
+    "icon": "mdi:ev-plug-type2"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charger_state",
+   "state": "unplugged"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_charger_mode": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Charger Mode",
+    "icon": "mdi:ev-station"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charger_mode",
+   "state": "IDLE"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_ct_clamp": {
+   "attributes": {
+    "device_class": "power",
+    "friendly_name": "Indra Smart PRO Grid Power (CT Clamp)",
+    "icon": "mdi:transmission-tower",
+    "state_class": "measurement",
+    "unit_of_measurement": "kW"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_grid_power_ct_clamp",
+   "state": "-0.06"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_current": {
+   "attributes": {
+    "device_class": "current",
+    "friendly_name": "Indra Smart PRO Charging Current",
+    "icon": "mdi:current-ac",
+    "state_class": "measurement",
+    "unit_of_measurement": "A"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charging_current",
+   "state": "0"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_current_session_energy": {
+   "attributes": {
+    "device_class": "energy",
+    "friendly_name": "Indra Smart PRO Current Session Energy",
+    "icon": "mdi:battery-charging",
+    "state_class": "total",
+    "unit_of_measurement": "kWh"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_current_session_energy",
+   "state": "0.0"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_device_locked": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Locked",
+    "icon": "mdi:lock"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "sensor.indra_smart_pro_locked",
+   "state": "False"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_frequency": {
+   "attributes": {
+    "device_class": "frequency",
+    "friendly_name": "Indra Smart PRO Grid Frequency",
+    "icon": "mdi:sine-wave",
+    "state_class": "measurement",
+    "unit_of_measurement": "Hz"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": "diagnostic",
+   "entity_id": "sensor.indra_smart_pro_grid_frequency",
+   "state": "50"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_power": {
+   "attributes": {
+    "device_class": "power",
+    "friendly_name": "Indra Smart PRO Charging Power",
+    "icon": "mdi:flash",
+    "state_class": "measurement",
+    "unit_of_measurement": "kW"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charging_power",
+   "state": "0.0"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_schedule": {
+   "attributes": {
+    "friendly_name": "Indra Smart PRO Charging Schedule",
+    "icon": "mdi:calendar-clock"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_charging_schedule",
+   "state": "No schedule"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_session_energy": {
+   "attributes": {
+    "device_class": "energy",
+    "friendly_name": "Indra Smart PRO Last Session Energy",
+    "icon": "mdi:battery-charging",
+    "range_added_miles": 75.9,
+    "session_end": "2026-11-03T07:34:44.666Z",
+    "session_start": "2026-11-02T20:29:59.917Z",
+    "state_class": "total",
+    "unit_of_measurement": "kWh"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_last_session_energy",
+   "state": "23.12"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_temperature": {
+   "attributes": {
+    "device_class": "temperature",
+    "friendly_name": "Indra Smart PRO Temperature",
+    "icon": "mdi:thermometer",
+    "state_class": "measurement",
+    "unit_of_measurement": "\u00b0C"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_temperature",
+   "state": "14"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_total_energy": {
+   "attributes": {
+    "device_class": "energy",
+    "friendly_name": "Indra Smart PRO Total Energy",
+    "icon": "mdi:counter",
+    "state_class": "total_increasing",
+    "unit_of_measurement": "kWh"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_total_energy",
+   "state": "18086.27"
+  },
+  "sensor:11111111-2222-4333-8444-555555555555_voltage": {
+   "attributes": {
+    "device_class": "voltage",
+    "friendly_name": "Indra Smart PRO Voltage",
+    "icon": "mdi:sine-wave",
+    "state_class": "measurement",
+    "unit_of_measurement": "V"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "sensor.indra_smart_pro_voltage",
+   "state": "239"
+  },
+  "switch:11111111-2222-4333-8444-555555555555_boost": {
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Indra Smart PRO Boost Charging",
+    "icon": "mdi:lightning-bolt"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "switch.indra_smart_pro_boost_charging",
+   "state": "off"
+  },
+  "switch:11111111-2222-4333-8444-555555555555_lock": {
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Indra Smart PRO Lock Charger",
+    "icon": "mdi:lock"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "switch.indra_smart_pro_lock_charger",
+   "state": "off"
+  },
+  "switch:11111111-2222-4333-8444-555555555555_solar": {
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Indra Smart PRO Solar Matching",
+    "icon": "mdi:solar-power"
+   },
+   "device": {
+    "identifiers": [
+     [
+      "indra",
+      "11111111-2222-4333-8444-555555555555"
+     ]
+    ],
+    "manufacturer": "Indra",
+    "model": "Smart PRO 7kW",
+    "name": "Indra Smart PRO",
+    "sw_version": null
+   },
+   "entity_category": null,
+   "entity_id": "switch.indra_smart_pro_solar_matching",
+   "state": "off"
+  }
+ }
+}
